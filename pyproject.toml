@@ -9,5 +9,3 @@ dependencies = [
     "prefect-cloud",
 ]
 
-[project.scripts]
-quickstart-demo = "getting_started:main"

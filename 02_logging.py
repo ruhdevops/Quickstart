@@ -8,6 +8,7 @@ def get_customer_ids() -> list[str]:
     # Fetch customer IDs from a database or API
     return [f"customer{n}" for n in random.choices(range(100), k=50)]
 
+
 @task
 def process_customer(customer_id: str) -> str:
     # Process a single customer
@@ -15,6 +16,7 @@ def process_customer(customer_id: str) -> str:
     for _ in range(50):
         logger.info(f"Processing customer {customer_id}")
     return f"Processed {customer_id}"
+
 
 @flow
 def main() -> list[str]:
