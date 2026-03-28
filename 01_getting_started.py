@@ -39,6 +39,11 @@ def main() -> list[str]:
             border_style="green",
         )
     )
+
+    console.print(
+        "\n[bold blue]➡️ Next Step:[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
+    )
+
     return results
 
 
