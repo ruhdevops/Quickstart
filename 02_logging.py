@@ -1,6 +1,10 @@
 from prefect import flow, task
 from prefect.logging import get_run_logger
 import random
+from rich.console import Console
+from rich.panel import Panel
+
+console = Console()
 
 
 @task
@@ -35,7 +39,18 @@ def main() -> list[str]:
     # Map the process_customer task across all customer IDs
     results = process_customer.map(customer_ids)
 
-    print(f"✅ Successfully processed {len(results)} customers with detailed logging!")
+    console.print(
+        Panel.fit(
+            f"[bold green]✅ Successfully processed {len(results)} customers with detailed logging![/bold green]",
+            title="Success",
+            border_style="green",
+        )
+    )
+
+    console.print(
+        "\n[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
+    )
+
     return results
 
 

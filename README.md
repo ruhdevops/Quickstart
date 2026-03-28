@@ -12,37 +12,26 @@ At its core, QuickStart follows a simple philosophy: reduce noise, maximize clar
 
 Setup:
 
-git clone <your-repo-url>
-cd quickstart
-python -m venv .venv
-source .venv/bin/activate  (Windows: .venv\Scripts\activate)
-pip install -r requirements.txt
-quickstart run
+1. Clone the repository: `git clone <your-repo-url>`
+2. Create and activate a virtual environment: `python -m venv .venv && source .venv/bin/activate`
+3. Install dependencies: `pip install -e .`
+4. Run the first example: `python 01_getting_started.py`
 
 Project Structure:
 
-quickstart/
-├── quickstart/
-│   ├── __init__.py
-│   ├── core.py
-│   ├── flows.py
-│   ├── tasks.py
-│   └── cli.py
-├── tests/
-├── pyproject.toml
-├── requirements.txt
-├── requirements-dev.txt
-└── README.md
+.
+├── 01_getting_started.py  # Basic Prefect flow mapping
+├── 02_logging.py          # Prefect logging and stdout capture
+├── pyproject.toml         # Project metadata and dependencies
+└── README.md              # Project documentation
 
 Commands:
 
-quickstart run
-quickstart deploy
-quickstart test
+python 01_getting_started.py
+python 02_logging.py
 
 Development:
 
-pytest
 black .
 ruff check .
 mypy .
@@ -61,7 +50,7 @@ def pipeline():
 
 Run:
 
-python -m quickstart.flows
+python 01_getting_started.py
 
 Packaging:
 
