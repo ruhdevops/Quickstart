@@ -2,6 +2,7 @@ from prefect import flow, task
 import random
 from rich.console import Console
 from rich.panel import Panel
+from rich.rule import Rule
 
 console = Console()
 
@@ -19,7 +20,7 @@ def process_customer(customer_id: str) -> str:
 
 
 @flow(log_prints=True)
-def main() -> list[str]:
+def main():
     """
     ### 🚀 Getting Started with Prefect
     This flow demonstrates how to map a task over a list of inputs.
@@ -40,8 +41,9 @@ def main() -> list[str]:
         )
     )
 
+    console.print(Rule(style="blue"))
     console.print(
-        "\n[bold blue]➡️ Next Step:[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
+        "[bold blue]➡️ Next Step:[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     )
 
     return results

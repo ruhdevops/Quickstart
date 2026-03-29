@@ -3,6 +3,7 @@ from prefect.logging import get_run_logger
 import random
 from rich.console import Console
 from rich.panel import Panel
+from rich.rule import Rule
 
 console = Console()
 
@@ -17,13 +18,13 @@ def get_customer_ids() -> list[str]:
 def process_customer(customer_id: str) -> str:
     # Process a single customer
     logger = get_run_logger()
-    for _ in range(50):
+    for _ in range(3):
         logger.info(f"Processing customer {customer_id}")
     return f"Processed {customer_id}"
 
 
 @flow(log_prints=True)
-def main() -> list[str]:
+def main():
     """
     ### 📊 Logging with Prefect
 
@@ -37,7 +38,10 @@ def main() -> list[str]:
     """
     customer_ids = get_customer_ids()
     # Map the process_customer task across all customer IDs
-    results = process_customer.map(customer_ids)
+    console.print(f"[bold blue]📦 Fetched {len(customer_ids)} customer IDs[/bold blue]")
+
+    with console.status("[bold green]Processing customers with logging..."):
+        results = process_customer.map(customer_ids)
 
     console.print(
         Panel.fit(
@@ -47,8 +51,9 @@ def main() -> list[str]:
         )
     )
 
+    console.print(Rule(style="blue"))
     console.print(
-        "\n[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
+        "[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
     )
 
     return results
