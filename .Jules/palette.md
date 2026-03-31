@@ -9,3 +9,7 @@
 ## 2026-03-30 - [Demo Scale vs. Terminal Readability]
 **Learning:** For demo scripts, larger data sets can degrade the UX by flooding the terminal with logs, making it harder for users to see the structure of the output.
 **Action:** Limit the default number of items in demo loops (e.g., 5 items) to maintain a high signal-to-noise ratio while still demonstrating the functionality.
+
+## 2026-03-31 - [Visual Polish for CLI Summaries]
+**Learning:** In CLI-based workflow scaffolds, replacing raw success messages with structured `rich.table.Table` summaries significantly improves the professional feel and readability of the output. Additionally, zero-padding generated IDs (e.g., 'customer-01') ensures natural sorting and vertical alignment, which reduces cognitive load when scanning lists. Finally, adding minimal artificial delays (e.g., `time.sleep(0.1)`) in demo scripts makes the "work" visible by giving terminal spinners and status indicators enough time to register with the user.
+**Action:** Use structured tables for final execution summaries, ensure all generated IDs are zero-padded for alignment, and include brief pacing pauses in demo tasks to make the execution flow more perceptible.
