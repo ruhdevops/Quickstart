@@ -17,3 +17,7 @@
 ## 2026-04-01 - [CLI Onboarding & Information Density]
 **Learning:** For terminal-based workflow scaffolds, rendering the flow's docstring as a 'Prefect Workflow Guide' using `rich.Markdown` inside a `rich.Panel` provides immediate, high-quality context to the user. Additionally, adding footers to summary tables (e.g., total items processed) improves information density and allows users to verify outcomes at a glance.
 **Action:** Incorporate a Markdown-rendered welcome panel at the start of main entry points and include summary footers in result tables to enhance clarity and professional feel.
+
+## 2026-04-02 - [Micro-UX Polish for Demo CLI Scripts]
+**Learning:** For tutorial-style CLI scaffolds, several micro-UX touches significantly improve the professional feel and onboarding experience: (1) using `random.sample` instead of `random.choices` for unique mock data generation; (2) displaying the total execution duration in the final success panel; and (3) adding descriptive titles to `rich.Rule` components for better visual hierarchy between results and "Next Step" guidance.
+**Action:** Ensure all demo scripts use unique mock data, provide performance feedback via execution duration, and utilize rule-titles for clear sectional separation.
