@@ -15,7 +15,8 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
-    ids = [f"customer-{n:02d}" for n in random.choices(range(100), k=5)]
+    # Using random.sample ensures unique IDs for a more realistic demo
+    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
 
 

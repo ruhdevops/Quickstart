@@ -17,3 +17,7 @@
 ## 2026-04-01 - [CLI Onboarding & Information Density]
 **Learning:** For terminal-based workflow scaffolds, rendering the flow's docstring as a 'Prefect Workflow Guide' using `rich.Markdown` inside a `rich.Panel` provides immediate, high-quality context to the user. Additionally, adding footers to summary tables (e.g., total items processed) improves information density and allows users to verify outcomes at a glance.
 **Action:** Incorporate a Markdown-rendered welcome panel at the start of main entry points and include summary footers in result tables to enhance clarity and professional feel.
+
+## 2026-04-02 - [Realistic Mock Data for CLI Clarity]
+**Learning:** In terminal-based demos, using `random.choices` for small mock data sets can lead to duplicate entries, which can confuse users or make the summary tables look broken.
+**Action:** Use `random.sample` instead of `random.choices` when generating mock data for tutorial scripts to ensure uniqueness and maintain a professional appearance in terminal output.
