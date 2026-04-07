@@ -14,7 +14,8 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
-    ids = [f"customer-{n:02d}" for n in random.choices(range(100), k=5)]
+    # Use random.sample to ensure unique customer IDs in the demo
+    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
 
 
@@ -34,6 +35,9 @@ def main():
     This flow demonstrates how to map a task over a list of inputs.
     It fetches a list of customer IDs and processes each one individually.
     """
+    # Start timer to measure total execution duration
+    start_time = time.perf_counter()
+
     # Display the flow's purpose for a guided onboarding experience
     if main.__doc__:
         console.print(
@@ -60,6 +64,9 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    # Calculate duration
+    duration = time.perf_counter() - start_time
+
     # Display results in a clean table for better readability
     table = Table(
         title="Processing Summary",
@@ -81,15 +88,15 @@ def main():
 
     console.print(
         Panel.fit(
-            f"[bold green]✨ Successfully processed {len(results)} customers![/bold green]",
+            f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
             title="Result",
             border_style="green",
         )
     )
 
-    console.print(Rule(style="blue"))
+    console.print(Rule("Next Step", style="blue"))
     console.print(
-        "[bold blue]➡️ Next Step:[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
+        "➡️ Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     )
 
     return results
