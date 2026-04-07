@@ -43,6 +43,7 @@ def main():
     - Use the Prefect logger for structured logging in tasks.
     - Map tasks across a list of inputs.
     """
+    start_time = time.perf_counter()
     # Display the flow's purpose for a guided onboarding experience
     if main.__doc__:
         console.print(
@@ -69,7 +70,10 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    duration = time.perf_counter() - start_time
+
     # Display results in a clean table for better readability
+    console.print()
     table = Table(
         title="Processing Summary",
         show_header=True,
@@ -90,13 +94,13 @@ def main():
 
     console.print(
         Panel.fit(
-            f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging![/bold green]",
+            f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
             title="Result",
             border_style="green",
         )
     )
 
-    console.print(Rule(style="blue"))
+    console.print(Rule("Finishing Up", style="blue"))
     console.print(
         "[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
     )
