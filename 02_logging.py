@@ -107,7 +107,7 @@ def main():
 
     console.print(Rule("Finishing Up", style="blue"))
     console.print(
-        "[blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/blue]"
+        "[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
     )
 
     return results
