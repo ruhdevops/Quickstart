@@ -50,6 +50,7 @@ def main():
     - Use the Prefect logger for structured logging in tasks.
     - Map tasks across a list of inputs.
     """
+    # Start timer to measure total execution duration
     start_time = time.perf_counter()
 
     # Display the flow's purpose for a guided onboarding experience
@@ -78,6 +79,7 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    # Calculate duration
     # Add visual breathing room before results
     console.print()
     duration = time.perf_counter() - start_time
@@ -109,6 +111,7 @@ def main():
 
     console.print(
         Panel.fit(
+            f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
             f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
             title="Result",
             border_style="green",

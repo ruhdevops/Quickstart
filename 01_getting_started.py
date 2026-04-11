@@ -41,6 +41,7 @@ def main():
     This flow demonstrates how to map a task over a list of inputs.
     It fetches a list of customer IDs and processes each one individually.
     """
+    # Start timer to measure total execution duration
     start_time = time.perf_counter()
 
     # Display the flow's purpose for a guided onboarding experience
@@ -69,6 +70,7 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    # Calculate duration
     # Add visual breathing room before results
     console.print()
     duration = time.perf_counter() - start_time
@@ -104,6 +106,8 @@ def main():
     )
 
     console.print(Rule("Next Step", style="blue"))
+    console.print(
+        "➡️ Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     console.print(
         "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     console.print(
