@@ -2,6 +2,7 @@ from prefect import flow, task
 from prefect.logging import get_run_logger
 import random
 import time
+from rich import box
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
@@ -15,6 +16,7 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
+    # Use random.sample to ensure unique IDs in the demo output
     # Use random.sample to ensure unique customer IDs
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     # Using random.sample ensures unique IDs for a more realistic demo
@@ -88,6 +90,7 @@ def main():
         show_header=True,
         header_style="bold blue",
         show_footer=True,
+        box=box.ROUNDED,
     )
     table.add_column("Customer ID", style="cyan", footer="Total")
     table.add_column(
