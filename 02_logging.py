@@ -54,7 +54,7 @@ def main():
             Panel(
                 Markdown(main.__doc__.strip()),
                 title="Prefect Workflow Guide",
-                border_style="blue",
+                border_style="bold blue",
                 padding=(1, 2),
             )
         )
@@ -85,9 +85,12 @@ def main():
         show_footer=True,
         box=box.ROUNDED,
     )
-    table.add_column("Customer ID", style="cyan", footer="Total")
+    table.add_column("Customer ID", style="cyan", footer="Total", footer_style="bold")
     table.add_column(
-        "Status", style="green", footer=f"[bold]{len(results)} Processed[/bold]"
+        "Status",
+        style="green",
+        footer=f"{len(results)} Processed",
+        footer_style="bold",
     )
 
     # Use zip to map results back to their original IDs more reliably
@@ -105,9 +108,10 @@ def main():
         )
     )
 
-    console.print(Rule("Finishing Up", style="blue"))
+    console.print()
+    console.print(Rule("🎉 Finishing Up", style="bold blue"))
     console.print(
-        "[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
+        "[bold blue]You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
     )
 
     return results

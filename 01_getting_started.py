@@ -45,7 +45,7 @@ def main():
             Panel(
                 Markdown(main.__doc__.strip()),
                 title="Prefect Workflow Guide",
-                border_style="blue",
+                border_style="bold blue",
                 padding=(1, 2),
             )
         )
@@ -76,9 +76,12 @@ def main():
         show_footer=True,
         box=box.ROUNDED,
     )
-    table.add_column("Customer ID", style="cyan", footer="Total")
+    table.add_column("Customer ID", style="cyan", footer="Total", footer_style="bold")
     table.add_column(
-        "Status", style="green", footer=f"[bold]{len(results)} Processed[/bold]"
+        "Status",
+        style="green",
+        footer=f"{len(results)} Processed",
+        footer_style="bold",
     )
 
     # Use zip to map results back to their original IDs more reliably
@@ -96,9 +99,10 @@ def main():
         )
     )
 
-    console.print(Rule("Next Step", style="blue"))
+    console.print()
+    console.print(Rule("🚀 Next Step", style="bold blue"))
     console.print(
-        "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
+        "[bold blue]Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect![/bold blue]"
     )
 
     return results
