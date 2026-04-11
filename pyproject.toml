@@ -8,6 +8,5 @@ dependencies = [
     "prefect",
     "prefect-cloud",
     "rich",
-    "fakeredis<2.35.0",
 ]
 

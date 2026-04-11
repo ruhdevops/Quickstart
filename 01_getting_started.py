@@ -6,7 +6,6 @@ from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.rule import Rule
 from rich.table import Table
-from rich import box
 
 console = Console()
 
@@ -16,10 +15,6 @@ def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Use random.sample to ensure unique customer IDs in the demo
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Add a brief pause to make the fetching state visible in the UI
-    time.sleep(0.1)
     return sorted(ids)
 
 
@@ -47,7 +42,7 @@ def main():
             Panel(
                 Markdown(main.__doc__.strip()),
                 title="Prefect Workflow Guide",
-                border_style="bold blue",
+                border_style="blue",
                 padding=(1, 2),
             )
         )
@@ -70,20 +65,15 @@ def main():
     duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
-    console.print()
     table = Table(
         title="Processing Summary",
         show_header=True,
         header_style="bold blue",
         show_footer=True,
-        box=box.ROUNDED,
     )
-    table.add_column("Customer ID", style="cyan", footer="Total", footer_style="bold")
+    table.add_column("Customer ID", style="cyan", footer="Total")
     table.add_column(
-        "Status",
-        style="green",
-        footer=f"{len(results)} Processed",
-        footer_style="bold",
+        "Status", style="green", footer=f"[bold]{len(results)} Processed[/bold]"
     )
 
     # Use zip to map results back to their original IDs more reliably
@@ -104,10 +94,6 @@ def main():
     console.print(Rule("Next Step", style="blue"))
     console.print(
         "[bold blue]➡️[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print()
-    console.print(Rule("🚀 Next Step", style="bold blue"))
-    console.print(
-        "[bold blue]Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect![/bold blue]"
     )
 
     return results
