@@ -25,6 +25,6 @@
 **Learning:** For CLI-based onboarding, providing immediate feedback on execution duration via `time.perf_counter()` and using titled `rich.Rule` components significantly improves the professional feel and clarity of the workflow completion state.
 **Action:** Incorporate high-resolution execution timing in final result panels and add descriptive titles to terminal rules to better guide users through multi-step onboarding processes.
 
-## 2026-04-10 - [Terminal Accessibility & Color Contrast]
-**Learning:** In terminal UIs, the 'bold' attribute often triggers the 'bright' color variant. For colors like blue on a dark background, the non-bold variant can have insufficient contrast, making text difficult to read.
-**Action:** When using color-coded instructional or success messages in CLI tools, prefer using 'bold' (e.g., '[bold blue]') to ensure the text remains legible across a wide variety of terminal themes and configurations.
+## 2026-04-02 - [Micro-UX Polish for Demo CLI Scripts]
+**Learning:** For tutorial-style CLI scaffolds, several micro-UX touches significantly improve the professional feel and onboarding experience: (1) using `random.sample` instead of `random.choices` for unique mock data generation; (2) displaying the total execution duration in the final success panel; and (3) adding descriptive titles to `rich.Rule` components for better visual hierarchy between results and "Next Step" guidance.
+**Action:** Ensure all demo scripts use unique mock data, provide performance feedback via execution duration, and utilize rule-titles for clear sectional separation.
