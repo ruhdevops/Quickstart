@@ -16,10 +16,6 @@ def get_customer_ids() -> list[str]:
     # Use sorted and zero-padded IDs for better terminal alignment
     # Use random.sample to ensure unique customer IDs
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Using random.sample ensures unique IDs for a more realistic demo
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Use random.sample to ensure unique customer IDs in the demo
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
 
 
@@ -69,7 +65,6 @@ def main():
 
     # Add visual breathing room before results
     console.print()
-    duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
     table = Table(
@@ -91,7 +86,6 @@ def main():
     console.print()
 
     duration = time.perf_counter() - start_time
-
     console.print(
         Panel.fit(
             f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
@@ -103,12 +97,6 @@ def main():
     console.print(Rule("Next Step", style="blue"))
     console.print(
         "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print(
-        "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print()
-    console.print(Rule("🚀 Next Step", style="bold blue"))
-    console.print(
-        "[bold blue]➡️[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     )
 
     return results
