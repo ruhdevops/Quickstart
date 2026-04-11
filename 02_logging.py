@@ -2,7 +2,6 @@ from prefect import flow, task
 from prefect.logging import get_run_logger
 import random
 import time
-from rich import box
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
@@ -16,11 +15,6 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
-    # Use random.sample to ensure unique IDs in the demo output
-    # Use random.sample to ensure unique customer IDs
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Using random.sample ensures unique IDs for a more realistic demo
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     # Use random.sample to ensure unique customer IDs in the demo
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
@@ -80,8 +74,6 @@ def main():
         results = [f.result() for f in futures]
 
     # Calculate duration
-    # Add visual breathing room before results
-    console.print()
     duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
@@ -90,7 +82,6 @@ def main():
         show_header=True,
         header_style="bold blue",
         show_footer=True,
-        box=box.ROUNDED,
     )
     table.add_column("Customer ID", style="cyan", footer="Total")
     table.add_column(
@@ -104,27 +95,15 @@ def main():
     console.print(table)
     console.print()
 
-    duration = time.perf_counter() - start_time
     console.print(
         Panel.fit(
             f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
-
-    console.print(
-        Panel.fit(
-            f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
-            f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
             title="Result",
             border_style="green",
         )
     )
 
     console.print(Rule("Conclusion", style="blue"))
-    console.print(Rule("Next Step", style="blue"))
-    console.print(Rule("Conclusion", style="blue"))
-    console.print(
-        "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
-    console.print()
-    console.print(Rule("🎉 Finishing Up", style="bold blue"))
     console.print(
         "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
     )

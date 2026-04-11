@@ -1,7 +1,6 @@
 from prefect import flow, task
 import random
 import time
-from rich import box
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
@@ -15,11 +14,6 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
-    # Use random.sample to ensure unique IDs in the demo output
-    # Use random.sample to ensure unique customer IDs
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
-    # Using random.sample ensures unique IDs for a more realistic demo
-    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     # Use random.sample to ensure unique customer IDs in the demo
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
@@ -71,8 +65,6 @@ def main():
         results = [f.result() for f in futures]
 
     # Calculate duration
-    # Add visual breathing room before results
-    console.print()
     duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
@@ -81,7 +73,6 @@ def main():
         show_header=True,
         header_style="bold blue",
         show_footer=True,
-        box=box.ROUNDED,
     )
     table.add_column("Customer ID", style="cyan", footer="Total")
     table.add_column(
@@ -95,8 +86,6 @@ def main():
     console.print(table)
     console.print()
 
-    duration = time.perf_counter() - start_time
-
     console.print(
         Panel.fit(
             f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
@@ -108,14 +97,6 @@ def main():
     console.print(Rule("Next Step", style="blue"))
     console.print(
         "➡️ Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print(
-        "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print(
-        "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
-    console.print()
-    console.print(Rule("🚀 Next Step", style="bold blue"))
-    console.print(
-        "[bold blue]➡️[/bold blue] Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     )
 
     return results
