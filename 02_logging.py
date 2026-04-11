@@ -17,6 +17,10 @@ def get_customer_ids() -> list[str]:
     # Use sorted and zero-padded IDs for better terminal alignment
     # Use random.sample to ensure unique customer IDs
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
+    # Using random.sample ensures unique IDs for a more realistic demo
+    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
+    # Use random.sample to ensure unique customer IDs in the demo
+    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     return sorted(ids)
 
 
@@ -74,6 +78,7 @@ def main():
 
     # Add visual breathing room before results
     console.print()
+    duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
     table = Table(
@@ -98,12 +103,22 @@ def main():
     console.print(
         Panel.fit(
             f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
+
+    console.print(
+        Panel.fit(
+            f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
             title="Result",
             border_style="green",
         )
     )
 
     console.print(Rule("Conclusion", style="blue"))
+    console.print(Rule("Next Step", style="blue"))
+    console.print(Rule("Conclusion", style="blue"))
+    console.print(
+        "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
+    console.print()
+    console.print(Rule("🎉 Finishing Up", style="bold blue"))
     console.print(
         "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
     )
