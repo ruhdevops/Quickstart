@@ -67,6 +67,8 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    # Add visual breathing room before results
+    console.print()
     duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
@@ -99,6 +101,8 @@ def main():
     )
 
     console.print(Rule("Next Step", style="blue"))
+    console.print(
+        "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     console.print(
         "Try running [cyan]python 02_logging.py[/cyan] to learn about logging in Prefect!"
     console.print()

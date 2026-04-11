@@ -76,6 +76,8 @@ def main():
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
 
+    # Add visual breathing room before results
+    console.print()
     duration = time.perf_counter() - start_time
 
     # Display results in a clean table for better readability
@@ -98,6 +100,9 @@ def main():
     console.print()
 
     duration = time.perf_counter() - start_time
+    console.print(
+        Panel.fit(
+            f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
 
     console.print(
         Panel.fit(
@@ -107,6 +112,7 @@ def main():
         )
     )
 
+    console.print(Rule("Conclusion", style="blue"))
     console.print(Rule("Next Step", style="blue"))
     console.print(Rule("Conclusion", style="blue"))
     console.print(
@@ -114,7 +120,7 @@ def main():
     console.print()
     console.print(Rule("🎉 Finishing Up", style="bold blue"))
     console.print(
-        "[bold blue]🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features.[/bold blue]"
+        "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
     )
 
     return results
