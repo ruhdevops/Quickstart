@@ -16,6 +16,8 @@ console = Console()
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
+    # Use random.sample to ensure unique customer IDs
+    ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     # Using random.sample ensures unique IDs for a more realistic demo
     ids = [f"customer-{n:02d}" for n in random.sample(range(100), k=5)]
     # Use random.sample to ensure unique customer IDs in the demo
@@ -50,6 +52,7 @@ def main():
     - Map tasks across a list of inputs.
     """
     start_time = time.perf_counter()
+
     # Display the flow's purpose for a guided onboarding experience
     if main.__doc__:
         console.print(
@@ -102,6 +105,8 @@ def main():
     console.print(table)
     console.print()
 
+    duration = time.perf_counter() - start_time
+
     console.print(
         Panel.fit(
             f"[bold green]✨ Successfully processed {len(results)} customers with detailed logging in {duration:.2f}s![/bold green]",
@@ -110,6 +115,9 @@ def main():
         )
     )
 
+    console.print(Rule("Conclusion", style="blue"))
+    console.print(
+        "🎉 You've completed the Quickstart! Check out the [cyan]README.md[/cyan] for more features."
     console.print()
     console.print(Rule("🎉 Finishing Up", style="bold blue"))
     console.print(
