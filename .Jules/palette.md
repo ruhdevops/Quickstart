@@ -31,3 +31,7 @@
 ## 2026-04-02 - [Micro-UX Polish for Demo CLI Scripts]
 **Learning:** For tutorial-style CLI scaffolds, several micro-UX touches significantly improve the professional feel and onboarding experience: (1) using `random.sample` instead of `random.choices` for unique mock data generation; (2) displaying the total execution duration in the final success panel; and (3) adding descriptive titles to `rich.Rule` components for better visual hierarchy between results and "Next Step" guidance.
 **Action:** Ensure all demo scripts use unique mock data, provide performance feedback via execution duration, and utilize rule-titles for clear sectional separation.
+
+## 2026-04-04 - [Consistent Visual Hierarchy and Accessibility in CLI]
+**Learning:** Using 'bold blue' for all structural components (Panels, Rules, and instructional text) creates a strong, consistent visual hierarchy and improves accessibility by ensuring sufficient contrast. Applying `footer_style="bold"` in `rich.table.Table` definitions instead of inline markup maintains cleaner code and consistent visual weight for summary data.
+**Action:** Standardize on `bold blue` for CLI structural elements and use explicit `footer_style` properties in tables to ensure high-contrast, professional-grade terminal interfaces.
