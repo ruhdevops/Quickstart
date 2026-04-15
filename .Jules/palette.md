@@ -36,6 +36,6 @@
 **Learning:** Using 'bold blue' for all structural components (Panels, Rules, and instructional text) creates a strong, consistent visual hierarchy and improves accessibility by ensuring sufficient contrast. Applying `footer_style="bold"` in `rich.table.Table` definitions instead of inline markup maintains cleaner code and consistent visual weight for summary data.
 **Action:** Standardize on `bold blue` for CLI structural elements and use explicit `footer_style` properties in tables to ensure high-contrast, professional-grade terminal interfaces.
 
-## 2026-04-05 - [Prefect UI Observability & Result Polish]
-**Learning:** Enhancing the Prefect dashboard experience via explicit `name` and `task_run_name` (with variable interpolation) metadata significantly improves observability and creates a more professional developer experience. Additionally, standardizing result visual cues (like '✨' or '📊' prefixes and success emojis in table footers) provides consistent psychological closure for workflow execution.
-**Action:** Use descriptive Prefect metadata for all flows and tasks, and ensure final terminal results use consistent iconography and high-contrast styling.
+## 2026-04-15 - [Prefect Traceability & Terminal Scanability]
+**Learning:** In orchestration-based scaffolds, providing human-readable names and dynamic run names (e.g., `process-{customer_id}`) for tasks significantly improves the observability and debugging experience in the dashboard. Highlighting key numeric metrics in the CLI using consistent secondary colors (like `bold cyan`) helps users quickly parse execution outcomes.
+**Action:** Always provide descriptive `name` parameters for flows and tasks, use variable interpolation in `task_run_name` for mapped tasks, and use consistent highlighting for numeric values in terminal output.

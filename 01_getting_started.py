@@ -11,8 +11,7 @@ from rich.table import Table
 console = Console()
 
 
-@task(name="Fetch Customers")
-@task(name="Fetch Customer IDs")
+@task(name="Fetch Customer Data")
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
@@ -21,8 +20,7 @@ def get_customer_ids() -> list[str]:
     return sorted(ids)
 
 
-@task(name="Process Customer", task_run_name="Processing {customer_id}")
-@task(name="Process Customer", task_run_name="Process {customer_id}")
+@task(name="Process Customer", task_run_name="process-{customer_id}")
 def process_customer(customer_id: str) -> str:
     """Process a single customer."""
     # Add a brief pause to make the processing state visible in the UI
@@ -30,8 +28,7 @@ def process_customer(customer_id: str) -> str:
     return f"Processed {customer_id}"
 
 
-@flow(name="Getting Started", log_prints=True)
-@flow(name="Getting Started Flow", log_prints=True)
+@flow(name="Getting Started Workflow", log_prints=True)
 def main():
     """
     ### 🚀 Getting Started with Prefect
@@ -86,7 +83,7 @@ def main():
     table.add_column(
         "Status",
         style="green",
-        footer=f"✅ {len(results)} Processed",
+        footer=f"{len(results)} Processed",
         footer_style="bold",
     )
 
@@ -99,10 +96,9 @@ def main():
 
     console.print(
         Panel.fit(
-            f"[bold green]✨ Successfully processed {len(results)} customers in {duration:.2f}s![/bold green]",
-            title="✨ Result",
-            title="✨ Workflow Results",
-            border_style="bold blue",
+            f"[bold green]✨ Successfully processed [bold cyan]{len(results)}[/bold cyan] customers in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
+            title="Result",
+            border_style="green",
         )
     )
 
