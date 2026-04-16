@@ -39,3 +39,7 @@
 ## 2026-04-15 - [Prefect Traceability & Terminal Scanability]
 **Learning:** In orchestration-based scaffolds, providing human-readable names and dynamic run names (e.g., `process-{customer_id}`) for tasks significantly improves the observability and debugging experience in the dashboard. Highlighting key numeric metrics in the CLI using consistent secondary colors (like `bold cyan`) helps users quickly parse execution outcomes.
 **Action:** Always provide descriptive `name` parameters for flows and tasks, use variable interpolation in `task_run_name` for mapped tasks, and use consistent highlighting for numeric values in terminal output.
+
+## 2026-04-16 - [Cohesive Branding in CLI and Dashboards]
+**Learning:** For tool-sets with both a CLI and a web-based dashboard (like Prefect), maintaining a consistent "brand" (e.g., specific color schemes like 'bold blue' and emoji usage) across both interfaces creates a more unified and professional user experience. Standardizing the "Result" panel and task naming conventions makes the entire system feel like a single, cohesive product.
+**Action:** Apply consistent branding (colors, titles, emojis) to both terminal output and dashboard metadata to ensure a unified user experience across all interfaces.

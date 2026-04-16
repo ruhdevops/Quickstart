@@ -12,7 +12,7 @@ from rich.table import Table
 console = Console()
 
 
-@task(name="Fetch Customer Data")
+@task(name="Fetch Customer Data", task_run_name="fetch-customer-data")
 def get_customer_ids() -> list[str]:
     """Fetch customer IDs from a database or API."""
     # Use sorted and zero-padded IDs for better terminal alignment
@@ -83,6 +83,7 @@ def main():
     # Display results in a clean table for better readability
     table = Table(
         title="Processing Summary",
+        title_style="bold blue",
         show_header=True,
         header_style="bold blue",
         show_footer=True,
@@ -92,8 +93,8 @@ def main():
     table.add_column(
         "Status",
         style="green",
-        footer=f"{len(results)} Processed",
-        footer_style="bold",
+        footer=f"{len(results)} Processed ✅",
+        footer_style="bold blue",
     )
 
     # Use zip to map results back to their original IDs more reliably
@@ -105,9 +106,9 @@ def main():
 
     console.print(
         Panel.fit(
-            f"[bold green]✨ Successfully processed [bold cyan]{len(results)}[/bold cyan] customers with detailed logging in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
-            title="Result",
-            border_style="green",
+            f"[bold green]Successfully processed [bold cyan]{len(results)}[/bold cyan] customers with detailed logging in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
+            title="📊 Result",
+            border_style="bold blue",
         )
     )
 
