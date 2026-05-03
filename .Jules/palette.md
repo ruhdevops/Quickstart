@@ -43,3 +43,7 @@
 ## 2026-04-16 - [Cohesive Branding in CLI and Dashboards]
 **Learning:** For tool-sets with both a CLI and a web-based dashboard (like Prefect), maintaining a consistent "brand" (e.g., specific color schemes like 'bold blue' and emoji usage) across both interfaces creates a more unified and professional user experience. Standardizing the "Result" panel and task naming conventions makes the entire system feel like a single, cohesive product.
 **Action:** Apply consistent branding (colors, titles, emojis) to both terminal output and dashboard metadata to ensure a unified user experience across all interfaces.
+
+## 2026-04-17 - [Dynamic Pluralization and Visual Breathing Room]
+**Learning:** For tutorial scripts, using dynamic pluralization (e.g., "1 customer" vs. "5 customers") ensures the UI remains grammatically correct and polished regardless of data volume. Additionally, adding explicit `padding=(1, 2)` to `Panel` components prevents the content from feeling "cramped," especially in final summaries where visual balance is key to a professional feel.
+**Action:** Always implement dynamic pluralization for key nouns and ensure result panels have adequate internal padding for a clean, professional aesthetic.

@@ -55,12 +55,15 @@ def main():
     with console.status("[bold green]🔍 Fetching customer data..."):
         customer_ids = get_customer_ids()
 
+    # Add dynamic pluralization for better UX
+    customer_label = "customer ID" if len(customer_ids) == 1 else "customer IDs"
     console.print(
-        f"[bold blue]📦 Successfully fetched [bold cyan]{len(customer_ids)}[/bold cyan] customer IDs[/bold blue]"
+        f"[bold blue]📦 Successfully fetched [bold cyan]{len(customer_ids)}[/bold cyan] {customer_label}[/bold blue]"
     )
     console.print()
 
-    with console.status("[bold green]⚙️ Processing customers..."):
+    processing_label = "customer" if len(customer_ids) == 1 else "customers"
+    with console.status(f"[bold green]⚙️ Processing {processing_label}..."):
         futures = process_customer.map(customer_ids)
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
@@ -95,18 +98,21 @@ def main():
     console.print(table)
     console.print()
 
+    # Add dynamic pluralization and visual breathing room to the result panel
+    result_label = "customer" if len(results) == 1 else "customers"
     console.print(
         Panel.fit(
-            f"[bold green]Successfully processed [bold cyan]{len(results)}[/bold cyan] customers in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
+            f"[bold green]Successfully processed [bold cyan]{len(results)}[/bold cyan] {result_label} in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
             title="✨ Result",
             border_style="bold blue",
+            padding=(1, 2),
         )
     )
 
     console.print()
     console.print(Rule("🚀 Next Step", style="bold blue"))
     console.print(
-        "[bold blue]➡️[/bold blue] [bold blue]Try running[/bold blue] [cyan]python 02_logging.py[/cyan] [bold blue]to learn about logging in Prefect![/bold blue]"
+        "[bold blue]➡️[/bold blue] [bold blue]Try running[/bold blue] [bold cyan]python 02_logging.py[/bold cyan] [bold blue]to learn about logging in Prefect![/bold blue]"
     )
 
     return results
