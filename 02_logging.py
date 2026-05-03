@@ -25,10 +25,12 @@ def get_customer_ids() -> list[str]:
 def process_customer(customer_id: str) -> str:
     """Process a single customer."""
     logger = get_run_logger()
-    for _ in range(3):
+    steps = 3
+    for i in range(steps):
         # Add a brief pause to make the logging visible and realistic
         time.sleep(0.05)
-        logger.info(f"Processing customer {customer_id}")
+        # Add step progress to the logs for better clarity
+        logger.info(f"Processing customer {customer_id} (step {i+1}/{steps})")
     return f"Processed {customer_id}"
 
 
@@ -64,12 +66,17 @@ def main():
     with console.status("[bold green]🔍 Fetching customer data..."):
         customer_ids = get_customer_ids()
 
+    # Add dynamic pluralization for better UX
+    customer_label = "customer ID" if len(customer_ids) == 1 else "customer IDs"
     console.print(
-        f"[bold blue]📦 Successfully fetched [bold cyan]{len(customer_ids)}[/bold cyan] customer IDs[/bold blue]"
+        f"[bold blue]📦 Successfully fetched [bold cyan]{len(customer_ids)}[/bold cyan] {customer_label}[/bold blue]"
     )
     console.print()
 
-    with console.status("[bold green]⚙️ Processing customers with logging..."):
+    processing_label = "customer" if len(customer_ids) == 1 else "customers"
+    with console.status(
+        f"[bold green]⚙️ Processing {processing_label} with logging..."
+    ):
         futures = process_customer.map(customer_ids)
         # Explicitly wait for results to avoid AttributeErrors on futures
         results = [f.result() for f in futures]
@@ -104,11 +111,14 @@ def main():
     console.print(table)
     console.print()
 
+    # Add dynamic pluralization and visual breathing room to the result panel
+    result_label = "customer" if len(results) == 1 else "customers"
     console.print(
         Panel.fit(
-            f"[bold green]Successfully processed [bold cyan]{len(results)}[/bold cyan] customers with detailed logging in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
+            f"[bold green]Successfully processed [bold cyan]{len(results)}[/bold cyan] {result_label} with detailed logging in [bold cyan]{duration:.2f}s[/bold cyan]![/bold green]",
             title="📊 Result",
             border_style="bold blue",
+            padding=(1, 2),
         )
     )
 
